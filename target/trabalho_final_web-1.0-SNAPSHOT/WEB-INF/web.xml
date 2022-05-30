@@ -15,6 +15,10 @@
         <servlet-name>LogoutClienteServlet</servlet-name>
         <servlet-class>com.smdcommerce.controller.LogoutClienteServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginAdminServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.LoginAdminServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CadastrarUsuarioServlet</servlet-name>
         <url-pattern>/CadastrarUsuario</url-pattern>
@@ -26,6 +30,10 @@
     <servlet-mapping>
         <servlet-name>LogoutClienteServlet</servlet-name>
         <url-pattern>/LogoutCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginAdminServlet</servlet-name>
+        <url-pattern>/LoginAdmin</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

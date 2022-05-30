@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="col s6">
-                            Bem-vindo, <%= usuario.getNome()%>!
+                            Bem-vindo(a), <%= usuario.getNome()%>!
                         </div>
                     </div>
                     

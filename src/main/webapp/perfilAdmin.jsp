@@ -7,7 +7,7 @@
 <%@page import="com.smdcommerce.service.Usuario"%>
 <%
     Usuario usuario = (Usuario) session.getAttribute("usuario");
-    if (usuario == null) {
+    if (usuario == null || !usuario.isEhAdmin()) {
         request.setAttribute("mensagem", "Você não tem uma sessão válida de usuário do tipo cliente");
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(request, response);
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="col s6">
-                            Bem-vindo(a), <%= usuario.getNome()%>!
+                            Bem-vindo(a) adminstrador, <%= usuario.getNome()%>!
                         </div>
                     </div>
                     
