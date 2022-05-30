@@ -49,10 +49,10 @@ public class UsuarioDAO {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         
-        Usuario result = null;
+        Usuario result = new Usuario();
         try{
             con = PostgreJDBC.getConnection();
-            pstm = con.prepareStatement("select 1 from usuario where login = ? and senha = ?");
+            pstm = con.prepareStatement("select * from usuario where login = ? and senha = ?");
             pstm.setString(1, login);
             pstm.setString(2, senha);
             rs = pstm.executeQuery();

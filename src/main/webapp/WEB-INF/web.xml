@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>CadastrarUsuarioServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.CadastrarUsuarioServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginClienteServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.LoginClienteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutClienteServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.LogoutClienteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CadastrarUsuarioServlet</servlet-name>
+        <url-pattern>/CadastrarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginClienteServlet</servlet-name>
+        <url-pattern>/LoginCliente</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutClienteServlet</servlet-name>
+        <url-pattern>/LogoutCliente</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
