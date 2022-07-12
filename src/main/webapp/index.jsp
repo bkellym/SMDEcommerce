@@ -3,69 +3,87 @@
     Created on : 30 de mai de 2022, 11:05:15
     Author     : Keller Maciel
 --%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="com.smdcommerce.DAO.ProdutoCarrinhoDAO"%>
+<%@page import="com.smdcommerce.service.Categoria"%>
+<%@page import="com.smdcommerce.DAO.CategoriaDAO"%>
+<%@page import="java.util.List"%>
+<%@page import="com.smdcommerce.service.Produto"%>
+<%@page import="com.smdcommerce.DAO.ProdutoDAO"%>
+<%@page import="com.smdcommerce.service.Usuario"%>
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <title>JSP Page</title>
-    </head>
-    <body class="teal darken-4">
-        <nav>
-        <div class="nav-wrapper teal lighten-1">
-            <div class = 'row'>
-                <div class = 'col s2'></div>
-                <div class = 'col s8'>
-                <a href="index.jsp" class="brand-logo">SMDEcommerce</a>
-                    <ul class="right">
-                        <li style="height: 64px;"> 
-                            <div class="row" style='width: 288px; height: 64px;'>
-                                <div class = 'col s2'> <i class="material-icons" style="font-size: 40px">person</i> </div>
-                                <div class = 'col s10' style="line-height: 0.2; vertical-align: middle; margin-top: 16px"> 
-                                    <div class="row">
-                                        <div class = 'col s12'> 
-                                            Faça <a href="login.jsp" a style="display: inline; font-weight: bold;">login</a>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                    <div class = 'col s12'> 
-                                        ou crie seu <a href="cadastroUsuario.jsp" style="display: inline; font-weight: bold;">cadastro</a>  </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li style="height: 64px;">
-                            <div class="row" style='width: 90px; height: 64px;'>
-                                <div class = 'col s2'><a href="sass.html"><i class="material-icons" style="font-size: 40px">shopping_cart</i></a></div>
-                            </div>
-                      </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-      </nav>
-        
+<%
+    Usuario usuario = (Usuario) session.getAttribute("usuario");
+    int categoriaId =  0;
+    
+    if(request.getParameter("categoriaId") != null){
+        categoriaId = Integer.parseInt(request.getParameter("categoriaId"));
+    }
+    ProdutoDAO produtoDAO = new ProdutoDAO();
+    List<Produto> produtos = produtoDAO.buscarEmEstoque(categoriaId); 
+    CategoriaDAO categoriaDAO = new CategoriaDAO();
+    List<Categoria> categorias = categoriaDAO.buscarTodas();
+%>
+
+<%@include file="header.jsp" %>
         
         <div class="container">
             <div class="row">
-                <div class="col s12 white" style="height: 80vh;"> </div>
+                <div class="col s12 white" style="min-height: 80vh;"> 
+                    <div class="row">
+                        <div class="col s8"> </div>
+                        <div class="input-field col s4">
+                            <select class="browser-default" id='categoria' name='categoria' 
+                                    onchange="redireciona()" >
+                              <option value="0" <%if(categoriaId == 0) { %> selected <%}%> >-- Selecione uma Categoria --</option>
+                              <% for(Categoria cat : categorias){ %>
+                                    <option value="<%=cat.getId()%>" <%if(categoriaId == cat.getId()) { %> selected <%}%> ><%=cat.getDescricao()%></option>
+                                <% } %>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                    <% for(Produto prod : produtos){ %>
+                        <div class="col s4 m4">
+                          <div class="card">
+                            <div class="card-image">
+                              <img src="<%=prod.getUrl_image()%>" style="width: 100%; height: 160px;object-fit: cover;">
+                              <span class="card-title teal lighten-1" style="font-size: 1em;"><%=prod.getDescricao()%></span>
+                              <% if(usuario != null && !usuario.isEhAdmin()) { %>
+                               <form action="AdicionarCarrinho" class="col s1" method="post"> 
+                                    <input id="id_prod" name="id_prod" type="hidden" value='<%=prod.getId()%>'/> 
+                                    <a class="btn-floating halfway-fab waves-effect waves-light red" href="javascript:;" onclick="parentNode.submit();">
+                                        <i class="material-icons">add</i>
+                                    </a>
+                                </form> 
+                              <% } %>
+                            </div>
+                            <div class="card-content">
+                              <p>R$ <%=prod.getValor().toString()%></p>
+                              <p><%=prod.getCategoria().getDescricao()%></p>
+                            </div>
+                          </div>
+                        </div>
+                    <% } %>
+                  </div>
+                </div>
             </div>
         </div>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         
-        <% if (request.getAttribute("mensagem") != null) { %>
-        
         <script type="text/javascript"> 
+            
+            function redireciona(){
+                select =  document.getElementById("categoria");
+                categId = select.options[select.selectedIndex].value;
+                window.location.href = '?categoriaId='+categId;
+            }
+            
             M.toast({
                 html: <%= request.getAttribute("mensagem") %>, 
                 displayLength: 4000
             });
         </script> 
-        
-        <% } %>
     </body>
 </html>

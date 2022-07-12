@@ -47,12 +47,11 @@ public class LoginClienteServlet extends HttpServlet {
                 String senha = request.getParameter("senha");
                 usuario = usuarioDAO.realizaLogin(login, senha);
                 
-                if(usuario != null){
+                if(usuario != null && usuario.getLogin() != null){
                     sucesso = true;
                     HttpSession session = request.getSession(true);
                     session.setAttribute("usuario", usuario);
                     mensagem = "Login com sucesso!";
-                    destino = "perfilCliente.jsp";
                 } else {
                     sucesso = false;
                     mensagem = "Senha incorreta";

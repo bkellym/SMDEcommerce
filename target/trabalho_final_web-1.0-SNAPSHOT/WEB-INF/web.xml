@@ -16,8 +16,48 @@
         <servlet-class>com.smdcommerce.controller.LogoutClienteServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginAdminServlet</servlet-name>
-        <servlet-class>com.smdcommerce.controller.LoginAdminServlet</servlet-class>
+        <servlet-name>CadastrarProdutoServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.CadastrarProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletarProdutoServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.DeletarProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CadastrarCategoriaServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.CadastrarCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarCategoriaServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.EditarCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletarCategoriaServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.DeletarCategoriaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarProdutoServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.EditarProdutoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditarUsuarioServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.EditarUsuarioServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletarUsuarioServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.DeletarUsuarioServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AdicionarCarrinhoServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.AdicionarCarrinhoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoverCarrinhoServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.RemoverCarrinhoServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EfetivarCompraServlet</servlet-name>
+        <servlet-class>com.smdcommerce.controller.EfetivarCompraServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CadastrarUsuarioServlet</servlet-name>
@@ -32,8 +72,48 @@
         <url-pattern>/LogoutCliente</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginAdminServlet</servlet-name>
-        <url-pattern>/LoginAdmin</url-pattern>
+        <servlet-name>CadastrarProdutoServlet</servlet-name>
+        <url-pattern>/CadastrarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletarProdutoServlet</servlet-name>
+        <url-pattern>/DeletarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CadastrarCategoriaServlet</servlet-name>
+        <url-pattern>/CadastrarCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarCategoriaServlet</servlet-name>
+        <url-pattern>/EditarCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletarCategoriaServlet</servlet-name>
+        <url-pattern>/DeletarCategoria</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarProdutoServlet</servlet-name>
+        <url-pattern>/EditarProduto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditarUsuarioServlet</servlet-name>
+        <url-pattern>/EditarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletarUsuarioServlet</servlet-name>
+        <url-pattern>/DeletarUsuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdicionarCarrinhoServlet</servlet-name>
+        <url-pattern>/AdicionarCarrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoverCarrinhoServlet</servlet-name>
+        <url-pattern>/RemoverCarrinho</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EfetivarCompraServlet</servlet-name>
+        <url-pattern>/EfetivarCompra</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

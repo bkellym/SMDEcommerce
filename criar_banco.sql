@@ -33,7 +33,6 @@ CREATE TABLE IF NOT EXISTS venda (
 
 CREATE TABLE IF NOT EXISTS produto_carrinho (
 	id serial PRIMARY KEY,
-	desconto real not null,
 	quantidade int not null,
 	id_usuario serial,
 	id_produto serial,

@@ -55,7 +55,7 @@ public class CategoriaDAO {
         try{
             con = PostgreJDBC.getConnection();
             stm = con.createStatement();
-            rs = stm.executeQuery("select * from categoria");
+            rs = stm.executeQuery("select * from categoria order by descricao ");
             
             while(rs.next()){
                 Categoria cat = new Categoria();
@@ -117,7 +117,7 @@ public class CategoriaDAO {
             con = PostgreJDBC.getConnection();
             pstm = con.prepareStatement(sql.toString());
             pstm.setString(1, categoriaNova.getDescricao());
-            pstm.setInt(6, categoriaNova.getId());
+            pstm.setInt(2, categoriaNova.getId());
             
             resultado = pstm.executeUpdate() > 0;
         }catch (SQLException ex){

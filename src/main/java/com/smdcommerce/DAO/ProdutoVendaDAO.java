@@ -116,7 +116,7 @@ public class ProdutoVendaDAO {
         try{
             con = PostgreJDBC.getConnection();
             pstm = con.prepareStatement(sql.toString());
-            pstm.setFloat(1, produtoNovo.getValor());
+            pstm.setBigDecimal(1, produtoNovo.getValor());
             pstm.setInt(2, produtoNovo.getQuantidade());
             pstm.setInt(3, produtoNovo.getId());
             pstm.setInt(4, idVenda);
@@ -146,7 +146,7 @@ public class ProdutoVendaDAO {
         try{
             con = PostgreJDBC.getConnection();
             pstm = con.prepareStatement(sql.toString());
-            pstm.setFloat(1, produtoNovo.getValor());
+            pstm.setBigDecimal(1, produtoNovo.getValor());
             pstm.setInt(2, produtoNovo.getQuantidade());
             pstm.setInt(3, produtoNovo.getId());
             

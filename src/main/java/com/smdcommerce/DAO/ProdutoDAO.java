@@ -20,23 +20,24 @@ public class ProdutoDAO {
         this.categoriaDAO = new CategoriaDAO();
     }
     
-    public List<Produto> buscarEmEstoque(Categoria categoria)throws Exception {
+    public List<Produto> buscarEmEstoque(int categoriaId)throws Exception {
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
         
-        List<Produto> produtos = new ArrayList<>();        
+        List<Produto> produtos = new ArrayList<>();
+        Categoria categoria = new Categoria();
         try{
             con = PostgreJDBC.getConnection();
             
             StringBuilder sql = new StringBuilder("select * from produto where quantidade > 0 ");
-            if(categoria != null)
+            if(categoriaId != 0)
                 sql.append("and id_categoria = ? ");
 
             pstm = con.prepareStatement(sql.toString());
                         
-            if(categoria != null)
-                pstm.setInt(1, categoria.getId());
+            if(categoriaId != 0)
+                pstm.setInt(1, categoriaId);
             
             rs = pstm.executeQuery();
             
@@ -48,7 +49,8 @@ public class ProdutoDAO {
                 prod.setValor(rs.getFloat("valor"));
                 prod.setQuantidade(rs.getInt("quantidade"));
                 
-                if(categoria != null){
+                categoria = categoriaDAO.buscar(categoriaId); 
+                if(categoria != null && categoriaId != 0){
                     prod.setCategoria(categoria);
                 } else {
                     prod.setCategoria(categoriaDAO.buscar(rs.getInt("id_categoria")));
@@ -169,7 +171,7 @@ public class ProdutoDAO {
             pstm = con.prepareStatement(sql.toString());
             pstm.setString(1, produtoNovo.getDescricao());
             pstm.setString(2, produtoNovo.getUrl_image());
-            pstm.setFloat(3, produtoNovo.getValor());
+            pstm.setBigDecimal(3, produtoNovo.getValor());
             pstm.setInt(4, produtoNovo.getQuantidade());
             pstm.setInt(5, produtoNovo.getCategoria().getId());
             
@@ -201,7 +203,7 @@ public class ProdutoDAO {
             pstm = con.prepareStatement(sql.toString());
             pstm.setString(1, produtoNovo.getDescricao());
             pstm.setString(2, produtoNovo.getUrl_image());
-            pstm.setFloat(3, produtoNovo.getValor());
+            pstm.setBigDecimal(3, produtoNovo.getValor());
             pstm.setInt(4, produtoNovo.getQuantidade());
             pstm.setInt(5, produtoNovo.getCategoria().getId());
             pstm.setInt(6, produtoNovo.getId());

@@ -1,5 +1,8 @@
 package com.smdcommerce.service;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * @author Keller Maciel
  */
@@ -7,7 +10,7 @@ public class Produto {
     private int id;
     private String descricao;
     private String url_image;
-    private float valor;
+    private BigDecimal valor;
     private int quantidade;
     private Categoria categoria;
 
@@ -35,12 +38,12 @@ public class Produto {
         this.url_image = url_image;
     }
 
-    public float getValor() {
-        return valor;
+    public BigDecimal getValor() {
+        return valor.setScale(2, RoundingMode.DOWN );
     }
 
     public void setValor(float valor) {
-        this.valor = valor;
+        this.valor = new BigDecimal(valor);
     }
 
     public int getQuantidade() {

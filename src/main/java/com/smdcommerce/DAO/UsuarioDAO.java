@@ -62,6 +62,7 @@ public class UsuarioDAO {
                 result.setNome(rs.getString("nome"));
                 result.setLogin(rs.getString("login"));
                 result.setEmail(rs.getString("email"));
+                result.setSenha(rs.getString("senha"));
                 result.setEndereco(rs.getString("endereco"));
                 result.setEhAdmin(rs.getInt("admins") == 1);
             }
@@ -238,3 +239,4 @@ public class UsuarioDAO {
     }
     
 }
+
